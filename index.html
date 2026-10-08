@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="A tiny browser game with one rule : Don't press the button."/>
-    <meta name="color-scheme" content="dark "/>
-    <title></title>DON'T.</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A tiny browser game with one rule: don't press the button." />
+  <meta name="color-scheme" content="dark" />
+  <title>DON'T.</title>
 
-
-    <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!--The whole game goes here<main>. JS willl update the text and move the button : the structure remainms simple-->
-        <main class="game" id="game">
-             <!-- Top bar: the three numbers the player sees (wired up in Phase 5). -->
-              <header class="states" aria-label="score"
-                <div class="stat">
-                    <span class="stat__label">Current </span>
-                    <span class="stat__value" id="stat-current">0</span>
-                </div>
-                <div class="stat">
-                    <span class="stat__label">Time</span>
-                    <span class="stat__value" id="stat-time">0.0s</span>
-                </div>
-            </header>
-             <!-- Centre stage: title, message and the button. -->
-              <section class="stage">
-                <h1 class="title"DON'T.</h1>
-                <p class="message" id="message"  aria-live="polite">Whatever you do....</p>
-                <button class="button" id="main-button" type="button"DONT'T PRESS ME</button>
-              </section>
-        </main>
-        <script src="game.js"></script>
+  <!-- The whole game lives inside <main>. JavaScript will update the
+       text and move the button; the structure here stays simple. -->
+  <main class="game" id="game">
+
+    <!-- Top bar: the three numbers the player sees (wired up in Phase 5). -->
+    <header class="stats" aria-label="Score">
+      <div class="stat">
+        <span class="stat__label">Best</span>
+        <span class="stat__value" id="stat-best">–</span>
+      </div>
+      <div class="stat">
+        <span class="stat__label">Current</span>
+        <span class="stat__value" id="stat-current">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat__label">Time</span>
+        <span class="stat__value" id="stat-time">0.0s</span>
+      </div>
+    </header>
+
+    <!-- Centre stage: title, message and the button. -->
+    <section class="stage">
+      <h1 class="title">DON'T.</h1>
+
+      <!-- aria-live makes screen readers announce message changes. -->
+      <p class="message" id="message" aria-live="polite">Whatever you do...</p>
+
+      <!-- A real <button>, so keyboard and screen readers work for free. -->
+      <button class="button" id="main-button" type="button">DON'T PRESS</button>
+    </section>
+
+  </main>
+
+  <script src="game.js"></script>
 </body>
 </html>

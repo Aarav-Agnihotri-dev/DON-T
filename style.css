@@ -2,147 +2,157 @@
    DON'T. — styles
    Phase 1: minimalist dark UI.
    ========================================================================== */
-   :root {
-    --bg:#0a0a0b
-    --surface: #131315
-    --suerface-hover: #1a1a1d
-    --border: #2a2a2e
-    --border-strong:#3d3d43
 
-    --text: #f2f2f3
-    --text-muted: #9a9aa2
+/* 1. Design tokens: tweak the whole look from here */
+:root {
+  --bg: #0a0a0b;
+  --surface: #131315;
+  --surface-hover: #1a1a1d;
+  --border: #2a2a2e;
+  --border-strong: #3d3d43;
 
-    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --font-mono:ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace; 
+  --text: #f2f2f3;
+  --text-muted: #9a9aa2;
 
-    --radius: 12px
-    --ease: cubic-bezier(0.2 , 0.7, 0.2, 1)
-    --speed: 180ms;
-   }
-   /*page basics */
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --radius: 12px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --speed: 180ms;
+}
+
+/* 2. Reset + page basics */
 *,
 *::before,
 *::after {
-    box-sizing:border-box
+  box-sizing: border-box;
 }
-html ,
-body{
-    background:var(--bg)
-    color:var(--text)
-    font-family:var(--font)
-    line-height:1.5
-    -webkit -font-smoothing:antialiased
-    overflow-x:hidden
+
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
-/* Layout */
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden; /* later phases move the button around; avoid scrollbars */
+}
+
+/* 3. Layout: stats on top, everything else centred */
 .game {
-    position:relative
-    display:flex
-    flex-direction:column
-    min-height: 100%;
-    padding:clamp(1rem, 4vw, 2.5rem);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: clamp(1rem, 4vw, 2.5rem);
 }
 
 .stage {
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap: 1.25rem;
-    text-align:center
-    padding-bottom: 6vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  text-align: center;
+  padding-bottom: 6vh; /* nudges content slightly above true centre */
 }
-/* 4. Stats bar *
-.stats {
-    display:flex;
-    justify-content: center;
-    gap: clamp(1.5rem, 6vw,3.5rem);
 
+/* 4. Stats bar */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.5rem, 6vw, 3.5rem);
 }
 
 .stat {
-display:flex;
-flex-direction:column;
-align-items:center;
-gap: 0.15rem;
-min-width: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  min-width: 4rem;
 }
- 
 
 .stat__label {
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color : var(--text-muted)
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
 .stat__value {
-    font-family:var(--font-mono)
-    font-size: 1.05rem;
-    font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums; /* digits don't jiggle as they change */
 }
-/*5. typography */
+
+/* 5. Typography */
 .title {
-    margin:0
-    font-size:clamp(3.5rem, 14vw, 8rem);
-    font-weight:700;
-    line-height:1.1
-    letter-spacing: -0.04em;
+  margin: 0;
+  font-size: clamp(3.5rem, 14vw, 8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .message {
-    margin:0
-    min-height: 1.5em;
-    max-width: 30ch;
-    font-size:clamp(1rem, 2.6vw, 1.25rem);
-    color:var(--text-muted) 
+  margin: 0;
+  min-height: 1.5em; /* reserve space so layout doesn't jump when text changes */
+  max-width: 28ch;
+  font-size: clamp(1rem, 2.6vw, 1.25rem);
+  color: var(--text-muted);
 }
-/* 6. button */
+
+/* 6. The button: modern UI look, not the default HTML button */
 .button {
-    appearance:none;
-    margin-top: 1rem;
-    padding:0.95rem 2 rem;
-    font:inherit
-    font-size:1rem;
-    font-weight:600;
-    letter-spacing:0.15em;
-    color:var(--text);
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    box-shadow:
-    0 1px 0 rgba(225 , 225, 225, 0.04 inset ,
+  appearance: none;
+  margin-top: 1rem;
+  padding: 0.95rem 2rem;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
     0 8px 24px rgba(0, 0, 0, 0.5);
-    cursor:pointer;
-    transition:
+  cursor: pointer;
+  transition:
     background var(--speed) var(--ease),
     border-color var(--speed) var(--ease),
-    transform var(--speed) var(--ease),
+    transform var(--speed) var(--ease);
 }
 
 .button:hover {
-    background:var(--surface-hover);
-    border-color:var(--border-strong);
-   
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
 }
 
 .button:active {
-    transform:scale(0.97);
-}   
-
-/* Visible keybord focus */
-.button:focus-visible {
-    outline: 2px solid var(--text);
-    outline-offset: 4px;    
+  transform: scale(0.97);
 }
-/* Users with reduced motion preference */
+
+/* Visible keyboard focus, important for accessibility */
+.button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 4px;
+}
+
+/* 7. Respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
-    *,
+  *,
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
-    }
-}   
+}
