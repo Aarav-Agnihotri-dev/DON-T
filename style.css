@@ -1,30 +1,148 @@
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+/* ==========================================================================
+   DON'T. — styles
+   Phase 1: minimalist dark UI.
+   ========================================================================== */
+   :root {
+    --bg:#0a0a0b
+    --surface: #131315
+    --suerface-hover: #1a1a1d
+    --border: #2a2a2e
+    --border-strong:#3d3d43
+
+    --text: #f2f2f3
+    --text-muted: #9a9aa2
+
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono:ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace; 
+
+    --radius: 12px
+    --ease: cubic-bezier(0.2 , 0.7, 0.2, 1)
+    --speed: 180ms;
+   }
+   /*page basics */
+*,
+*::before,
+*::after {
+    box-sizing:border-box
+}
+html ,
+body{
+    background:var(--bg)
+    color:var(--text)
+    font-family:var(--font)
+    line-height:1.5
+    -webkit -font-smoothing:antialiased
+    overflow-x:hidden
+}
+/* Layout */
+.game {
+    position:relative
+    display:flex
+    flex-direction:column
+    min-height: 100%;
+    padding:clamp(1rem, 4vw, 2.5rem);
+}
+
+.stage {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap: 1.25rem;
+    text-align:center
+    padding-bottom: 6vh;
+}
+/* 4. Stats bar *
+.stats {
+    display:flex;
     justify-content: center;
-    background: #111;
-    color: #fff;
-    font-family: Arial, sans-serif;
+    gap: clamp(1.5rem, 6vw,3.5rem);
+
 }
 
-
-h1 {
-    font-size: 64px;
-    margin-bottom: 10px;
+.stat {
+display:flex;
+flex-direction:column;
+align-items:center;
+gap: 0.15rem;
+min-width: 4rem;
 }
-p {
-    font-size: 20px;
-    margin-bottom: 30px;
+ 
+
+.stat__label {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color : var(--text-muted)
 }
 
-button {
-    padding: 20px 40px;
-    font-size: 24px;
+.stat__value {
+    font-family:var(--font-mono)
+    font-size: 1.05rem;
+    font-variant-numeric: tabular-nums;
+}
+/*5. typography */
+.title {
+    margin:0
+    font-size:clamp(3.5rem, 14vw, 8rem);
+    font-weight:700;
+    line-height:1.1
+    letter-spacing: -0.04em;
+}
+
+.message {
+    margin:0
+    min-height: 1.5em;
+    max-width: 30ch;
+    font-size:clamp(1rem, 2.6vw, 1.25rem);
+    color:var(--text-muted) 
+}
+/* 6. button */
+.button {
+    appearance:none;
+    margin-top: 1rem;
+    padding:0.95rem 2 rem;
+    font:inherit
+    font-size:1rem;
+    font-weight:600;
+    letter-spacing:0.15em;
+    color:var(--text);
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:
+    0 1px 0 rgba(225 , 225, 225, 0.04 inset ,
+    0 8px 24px rgba(0, 0, 0, 0.5);
+    cursor:pointer;
+    transition:
+    background var(--speed) var(--ease),
+    border-color var(--speed) var(--ease),
+    transform var(--speed) var(--ease),
+}
+
+.button:hover {
+    background:var(--surface-hover);
+    border-color:var(--border-strong);
    
-    color: #ff0000;
-   ;
-    cursor: pointer;
-   
 }
+
+.button:active {
+    transform:scale(0.97);
+}   
+
+/* Visible keybord focus */
+.button:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 4px;    
+}
+/* Users with reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+    }
+}   
